@@ -10,6 +10,7 @@ function App() {
   const [userInput, setUserInput] = useState<string>(() => '');
   const [isLoading, setIsLoading] = useState<boolean>(() => false);
   const [pokemonData, setPokemonData] = useState<IPokemonData>({} as IPokemonData);
+  const [error, setError] = useState<string>('');
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setUserInput(e.target.value);
@@ -26,7 +27,7 @@ function App() {
         /* Handle errors here instead of a catch() block so that we don't swallow
           exceptions from actual bugs in component */
         (err) => {
-          console.log(err);
+          setError(err.response.data.message);
           setIsLoading(false);
         },
       );
@@ -45,7 +46,9 @@ function App() {
           'Loading...'
         ) : Object.values(pokemonData).length ? (
           <p>{pokemonData.description}</p>
-        ) : null}
+        ) : (
+          error
+        )}
       </header>
     </div>
   );
