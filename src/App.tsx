@@ -1,5 +1,4 @@
-/* eslint-disable no-nested-ternary */
-import { ChangeEventHandler, FormEventHandler, ReactElement, useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 
 import { fetchData } from 'api';
@@ -8,6 +7,7 @@ import { IPokemonData } from 'schemas/pokemonData_d';
 import Form from 'components/shared/forms/Form';
 import Input from 'components/shared/inputs/Input';
 import GenericButton from 'components/shared/buttons/GenericButton';
+import UsePokemonData from 'components/shared/UsePokemonData/UsePokemonData';
 
 import './App.css';
 
@@ -24,22 +24,6 @@ function App() {
   const [pokemonData, setPokemonData] = useState<IPokemonData>({} as IPokemonData);
   const [error, setError] = useState<string>('');
 
-  const renderPokemonData = (): ReactElement | null => {
-    if (error) return <p className="request__error__font">{error}</p>;
-    if (Object.values(pokemonData).length) {
-      return (
-        <>
-          <p>
-            Sir Shakespeare would say about{' '}
-            <span className="pokemon__name__font">{pokemonData.name}</span> :
-          </p>
-          <p>{pokemonData.description}</p>
-        </>
-      );
-    }
-    return null;
-  };
-
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setUserInput(e.target.value);
 
@@ -49,6 +33,7 @@ function App() {
     if (userInput) {
       fetchData(userInput).then(
         (response) => {
+          setError('');
           setPokemonData(response.data);
           setIsLoading(false);
         },
@@ -78,8 +63,13 @@ function App() {
             Submit
           </GenericButton>
         </Form>
-        <div className="pokemon__result__container"></div>
-        {isLoading ? <CircularProgress size={32} /> : renderPokemonData()}
+        <div className="pokemon__result__container">
+          {isLoading ? (
+            <CircularProgress size={32} />
+          ) : (
+            <UsePokemonData pokemonData={pokemonData} error={error} />
+          )}
+        </div>
       </div>
     </div>
   );

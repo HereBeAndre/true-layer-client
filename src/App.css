@@ -17,11 +17,3 @@
 .pokemon__result__container {
   margin-top: 4rem;
 }
-
-.pokemon__name__font {
-  font-weight: 700;
-}
-
-.request__error__font {
-  color: #cc1a1a;
-}
