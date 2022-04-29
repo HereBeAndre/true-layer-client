@@ -20,7 +20,7 @@ const UsePokemonData: React.FC<IUsePokemonDataProps> = ({
     return (
       <>
         <p>
-          Sir Shakespeare would say about
+          Sir Shakespeare would say about{' '}
           <span className="pokemon__name__font">{pokemonData.name}</span>
         </p>
         <p className="pokemon__description__font">{pokemonData.description}</p>
