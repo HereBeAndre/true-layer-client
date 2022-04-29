@@ -1,0 +1,12 @@
+.pokemon__name__font {
+  font-weight: 700;
+}
+
+.request__error__font {
+  color: #cc1a1a;
+}
+
+.pokemon__description__font {
+  color: #187ac1;
+  font-weight: 700;
+}
