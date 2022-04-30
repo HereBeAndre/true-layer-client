@@ -15,7 +15,7 @@ afterEach(() => {
   container = null;
 });
 
-describe('UsePokemonData', () => {
+describe('<UsePokemonData />', () => {
   it('renders an error message', () => {
     act(() => {
       render(<UsePokemonData error="An error has occurred" />, container);

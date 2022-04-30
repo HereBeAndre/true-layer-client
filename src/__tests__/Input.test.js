@@ -16,7 +16,7 @@ afterEach(() => {
   container = null;
 });
 
-describe('Input', () => {
+describe('<Input />', () => {
   it('renders input element', () => {
     act(() => {
       render(<Input />, container);

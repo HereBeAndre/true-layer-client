@@ -7,7 +7,7 @@ interface IFormProps {
 }
 
 const Form: React.FC<IFormProps> = ({ children, handleFormSubmit }) => (
-  <form onSubmit={handleFormSubmit} className="form-container-flex">
+  <form onSubmit={handleFormSubmit} className="form-container-flex" data-testid="form">
     {children}
   </form>
 );
