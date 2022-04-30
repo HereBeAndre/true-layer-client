@@ -34,14 +34,14 @@ function App() {
       fetchData(userInput).then(
         (response) => {
           setError('');
-          setPokemonData(response.data);
+          setPokemonData(response?.data);
           setIsLoading(false);
         },
         /* Handle errors here instead of a catch() block so that we don't swallow
           exceptions from actual bugs in component */
         (err) => {
           setPokemonData({} as IPokemonData);
-          setError(err.response.data.message);
+          setError(err?.response?.data?.message);
           setIsLoading(false);
         },
       );
