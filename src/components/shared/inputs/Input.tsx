@@ -9,6 +9,9 @@ interface IInputProps {
   variant?: TMUIInputFieldVariant;
   handleInputChange: ChangeEventHandler<HTMLInputElement>;
   value?: string;
+  inputProps: {
+    'data-testid': string;
+  };
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -18,6 +21,7 @@ const Input: React.FC<IInputProps> = ({
   variant = 'standard',
   handleInputChange,
   value = '',
+  inputProps,
 }) => (
   <TextField
     id={id}
@@ -26,6 +30,7 @@ const Input: React.FC<IInputProps> = ({
     variant={variant}
     onChange={handleInputChange}
     value={value}
+    inputProps={inputProps}
   />
 );
 
