@@ -25,7 +25,7 @@ function App() {
   const [error, setError] = useState<string>('');
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) =>
-    setUserInput(e.target.value);
+    setUserInput(e.target.value.toLocaleLowerCase());
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -58,6 +58,9 @@ function App() {
             label="Search a Pokemon"
             handleInputChange={handleInputChange}
             value={userInput}
+            inputProps={{
+              'data-testid': 'pokemon-search-test-id',
+            }}
           />
           <GenericButton type="submit" disabled={validatePokemonSearchInput(userInput)}>
             Submit

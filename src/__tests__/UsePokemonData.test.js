@@ -5,13 +5,11 @@ import UsePokemonData from '../components/shared/UsePokemonData/UsePokemonData';
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
   container = document.createElement('div');
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -39,8 +37,12 @@ describe('UsePokemonData', () => {
     act(() => {
       render(<UsePokemonData pokemonData={mockPokemonData} />, container);
     });
+
+    expect(Object.keys(mockPokemonData).length).toEqual(2);
+
     expect(screen.getByText(/Pikachu/)).toBeInTheDocument();
     expect(screen.getByText(/Pikachu/)).toHaveClass('pokemon__name__font');
+
     expect(screen.getByText(/Pikaaaaa/)).toBeInTheDocument();
     expect(screen.getByText(/Pikaaaaa/)).toHaveClass('pokemon__description__font');
   });
