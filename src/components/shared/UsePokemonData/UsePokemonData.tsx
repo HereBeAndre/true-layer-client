@@ -16,7 +16,7 @@ const UsePokemonData: React.FC<IUsePokemonDataProps> = ({
     return <p className="request__error__font">{error}</p>;
   }
 
-  if (Object.values(pokemonData).length) {
+  if (pokemonData && Object.values(pokemonData).length) {
     return (
       <>
         <p>
