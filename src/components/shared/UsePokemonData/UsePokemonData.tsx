@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { IPokemonData } from 'schemas/pokemonData_d';
+import { replaceForwardSlash } from 'utils/functions';
 
 import './UsePokemonData.css';
 
@@ -23,7 +24,7 @@ const UsePokemonData: React.FC<IUsePokemonDataProps> = ({
           Sir Shakespeare would say about{' '}
           <span className="pokemon__name__font">{pokemonData.name}</span>
         </p>
-        <p className="pokemon__description__font">{pokemonData.description}</p>
+        <p className="pokemon__description__font">{replaceForwardSlash(pokemonData.description)}</p>
       </>
     );
   }
