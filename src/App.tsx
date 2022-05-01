@@ -1,4 +1,5 @@
-import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
 import { fetchData } from 'api';
@@ -10,6 +11,7 @@ import GenericButton from 'components/shared/buttons/GenericButton';
 import UsePokemonData from 'components/shared/UsePokemonData/UsePokemonData';
 
 import './App.css';
+import { serializeFormQuery } from 'utils/functions';
 
 /* Pokemon names length
   Shortest => 4 
@@ -24,6 +26,8 @@ function App() {
   const [pokemonData, setPokemonData] = useState<IPokemonData>({} as IPokemonData);
   const [error, setError] = useState<string>('');
 
+  const [, setSearchParams] = useSearchParams('');
+
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setUserInput(e.target.value.toLocaleLowerCase());
 
@@ -35,6 +39,7 @@ function App() {
         (response) => {
           setError('');
           setPokemonData(response?.data);
+          setSearchParams(serializeFormQuery('pokemon', response?.data?.name));
           setIsLoading(false);
         },
         /* Handle errors here instead of a catch() block so that we don't swallow
@@ -42,12 +47,19 @@ function App() {
         (err) => {
           setPokemonData({} as IPokemonData);
           setError(err?.response?.data?.message);
+          setSearchParams('');
           setIsLoading(false);
         },
       );
     }
     setUserInput('');
   };
+
+  useEffect(() => {
+    return () => {
+      setSearchParams('');
+    };
+  }, []);
 
   return (
     <div className="App">
