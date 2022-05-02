@@ -157,10 +157,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 Todo:
 
+- [ ] Dockerize the app;
 - [ ] Programmatically redirect user to main page if a non-existing route is visited;
 - [ ] Add RegExp to validate user input in text field - i.e. support both latin and non-latin characters;
 - [ ] Improve error handling - i.e. when backend is down;
-- [ ] Implement environment variables management for production, development and testing envs.
+- [ ] Implement environment variables management for production, development and testing envs;
+- [ ] Improve test coverage.
 
 Known bugs:
 
